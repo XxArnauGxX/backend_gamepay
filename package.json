@@ -1,0 +1,40 @@
+{
+  "name": "backend_gamepay",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier src --check",
+    "format:fix": "prettier src --write"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/XxArnauGxX/backend_gamepay.git"
+  },
+  "keywords": [],
+  "author": "XxArnauGxX",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/XxArnauGxX/backend_gamepay/issues"
+  },
+  "homepage": "https://github.com/XxArnauGxX/backend_gamepay#readme",
+  "dependencies": {
+    "cors": "2.8.5",
+    "dotenv": "16.5.0",
+    "express": "5.1.0",
+    "mongoose": "8.15.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.27.0",
+    "eslint": "9.27.0",
+    "globals": "16.2.0",
+    "nodemon": "3.1.10",
+    "prettier": "3.5.3"
+  }
+}
