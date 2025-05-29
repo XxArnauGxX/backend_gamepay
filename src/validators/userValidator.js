@@ -14,7 +14,7 @@ export const registerSchema = Joi.object({
       'string.min': 'Password must be at least 5 characters',
       'string.pattern.base':
         'Password must contain both lowercase and uppercase letters',
-      'any:required': 'Password is required',
+      'any.required': 'Password is required',
     }),
   confirmPassword: Joi.string().valid(Joi.ref('password')).required().messages({
     'any.only': 'Passwords must match',
