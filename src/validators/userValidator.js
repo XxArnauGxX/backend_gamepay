@@ -14,7 +14,7 @@ export const registerSchema = Joi.object({
       'string.min': 'Password must be at least 5 characters',
       'string.pattern.base':
         'Password must contain both lowercase and uppercase letters',
-      'any:required': 'Password is required',
+      'any.required': 'Password is required',
     }),
   confirmPassword: Joi.string().valid(Joi.ref('password')).required().messages({
     'any.only': 'Passwords must match',
@@ -36,5 +36,18 @@ export const registerSchema = Joi.object({
     }),
   address: Joi.string().required().messages({
     'any:required': 'Address  is required',
+  }),
+});
+
+export const loginSchema = Joi.object({
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .required()
+    .messages({
+      'string.empty': 'El email es obligatorio.',
+      'string.email': 'El email no tiene un formato válido.',
+    }),
+  password: Joi.string().required().messages({
+    'string.empty': 'La contraseña es obligatoria.',
   }),
 });
