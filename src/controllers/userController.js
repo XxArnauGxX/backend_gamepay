@@ -5,7 +5,7 @@ import {
   logoutService,
 } from '../services/userService.js';
 
-export async function register(req, res, next) {
+export async function register(req, res) {
   try {
     const result = await registerService(req.body);
     return res.status(201).json(result);
@@ -18,7 +18,7 @@ export async function register(req, res, next) {
   }
 }
 
-export async function login(req, res, next) {
+export async function login(req, res) {
   try {
     const { email, password } = req.body;
     const { accessToken, refreshToken, user } = await loginService(
@@ -41,7 +41,7 @@ export async function login(req, res, next) {
   }
 }
 
-export async function refreshTokenUser(req, res, next) {
+export async function refreshTokenUser(req, res) {
   try {
     const refreshFromClient = req.headers['x-refresh-token'];
     if (!refreshFromClient) {
@@ -59,7 +59,7 @@ export async function refreshTokenUser(req, res, next) {
   }
 }
 
-export async function logoutUser(req, res, next) {
+export async function logoutUser(req, res) {
   try {
     const refreshFromClient = req.headers['x-refresh-token'];
     if (!refreshFromClient) {
