@@ -1,6 +1,9 @@
 import {
   deleteAllProducts,
   insertManyProducts,
+  findFirstTenProducts,
+  findProductsByName,
+  findProductById,
 } from '../repositories/productRepository.js';
 
 const TMDB_BASE_URL = 'https://api.themoviedb.org/3';
@@ -43,7 +46,7 @@ export async function seedProductsService() {
   let tmdbResponse;
   try {
     tmdbResponse = await fetch(url);
-  } catch (fetchErr) {
+  } catch {
     const err = new Error('Error al conectar con TMDB');
     err.statusCode = 502;
     throw err;
@@ -60,7 +63,6 @@ export async function seedProductsService() {
 
   const productsToInsert = movies.map((movie) => {
     const price = Number((Math.random() * (50 - 5) + 5).toFixed(2));
-
     const genres = movie.genre_ids
       .map((id) => genreMap[id])
       .filter((g) => typeof g === 'string');
@@ -78,6 +80,28 @@ export async function seedProductsService() {
   });
 
   const inserted = await insertManyProducts(productsToInsert);
-
   return { insertedCount: inserted.length };
+}
+
+export async function listFirstTenService() {
+  const products = await findFirstTenProducts();
+  return products;
+}
+
+export async function searchByNameService(name) {
+  if (!name) {
+    return await findFirstTenProducts();
+  }
+  const products = await findProductsByName(name);
+  return products;
+}
+
+export async function getProductByIdService(id) {
+  const product = await findProductById(id);
+  if (!product) {
+    const err = new Error('Product not found');
+    err.statusCode = 404;
+    throw err;
+  }
+  return product;
 }
