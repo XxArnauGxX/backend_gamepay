@@ -35,7 +35,7 @@ export const registerSchema = Joi.object({
       'any.required': 'Surname is required',
     }),
   address: Joi.string().required().messages({
-    'any:required': 'Address  is required',
+    'any.required': 'Address is required',
   }),
 });
 
