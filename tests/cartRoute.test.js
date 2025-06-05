@@ -18,10 +18,7 @@ describe('Cart Routes - DELETE /api/cart/:productId', () => {
 
   beforeAll(async () => {
     // 1. Connectar a la BD
-    await mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(MONGODB_URI);
 
     // 2. Crear un producte de prova
     const product = await Product.create({

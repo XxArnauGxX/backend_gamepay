@@ -20,10 +20,7 @@ describe('Cart Service - removeFromCartService', () => {
 
   beforeAll(async () => {
     // 1. Connectar a MongoDB
-    await mongoose.connect(MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(MONGODB_URI);
 
     // 2. Crear dos productes de prova
     const prod1 = await Product.create({
