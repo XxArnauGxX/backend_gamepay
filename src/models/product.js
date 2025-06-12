@@ -5,20 +5,37 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  overview: String,
-  image: String,
-  releaseDate: String,
-  rating: Number,
   price: {
     type: Number,
     required: true,
   },
-  tmdbId: {
+  description: {
+    type: String,
+    required: true,
+  },
+  category: {
+    type: String,
+    required: true,
+  },
+  image: {
+    type: String,
+    required: true,
+  },
+  rating: {
+    rate: {
+      type: Number,
+      default: 0,
+    },
+    count: {
+      type: Number,
+      default: 0,
+    },
+  },
+  externalId: {
     type: Number,
     required: true,
     unique: true,
   },
-  genres: [String],
 });
 
 export default mongoose.model('Product', productSchema);
