@@ -11,13 +11,10 @@ const FAKE_STORE_API_URL = 'https://fakestoreapi.com/products';
 
 export async function seedProductsService() {
   try {
-    // Eliminar todos los productos
     await deleteAllProducts();
-    
-    // Eliminar índices existentes
+
     await Product.collection.dropIndexes();
-    
-    // Obtener productos de la API
+
     let apiResponse;
     try {
       apiResponse = await fetch(FAKE_STORE_API_URL);

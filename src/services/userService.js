@@ -103,7 +103,18 @@ export async function refreshTokenService(refreshFromClient) {
 
   await updateRefreshToken(user._id, newRefreshToken);
 
-  return { accessToken: newAccessToken, refreshToken: newRefreshToken };
+  const safeUser = {
+    id: user._id,
+    email: user.email,
+    name: user.name,
+    surname: user.surname,
+  };
+
+  return {
+    accessToken: newAccessToken,
+    refreshToken: newRefreshToken,
+    user: safeUser,
+  };
 }
 
 export async function logoutService(refreshFromClient) {

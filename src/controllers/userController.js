@@ -47,9 +47,9 @@ export async function refreshTokenUser(req, res) {
     if (!refreshFromClient) {
       return res.status(400).json({ error: 'Se requiere refresh token' });
     }
-    const { accessToken, refreshToken } =
+    const { accessToken, refreshToken, user } =
       await refreshTokenService(refreshFromClient);
-    return res.status(200).json({ accessToken, refreshToken });
+    return res.status(200).json({ accessToken, refreshToken, user });
   } catch (e) {
     if (e.statusCode === 401) {
       return res.status(401).json({ error: e.message });
